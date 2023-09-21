@@ -36,6 +36,6 @@ class Main:
             schedule.run_pending()
             time.sleep(1)
 
-if __name__ == '__main__':
-    main = Main()
-    main.run()
+    if __name__ == '__main__':
+        main = Main()
+        main.run()
