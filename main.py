@@ -27,7 +27,7 @@ class Main:
 
         #네트워크 관련 정보 수집 스케줄러 설정
         schedular.SetEvery5Sec(NWcollector.pushNetworkBytes, self.DB, self.slave.name) #네트워크사용량 수집 스케줄러 설정
-        #세션수립상태 수집 스케줄러 설정
+        schedular.SetEvery5Sec(NWcollector.pushNetworConnections, self.DB, self.slave.name)#세션수립상태 수집 스케줄러 설정
 
         # 시스템 에러정보 수집
 
