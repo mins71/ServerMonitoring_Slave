@@ -17,6 +17,7 @@ class UI:
 
             #준비완료 문구 출력 및 DB, slave 객체 반환
             print("Daemon is ready to run.")
+            print("Daemon Start!")
             return DB, slave
 
         except Exception as e:

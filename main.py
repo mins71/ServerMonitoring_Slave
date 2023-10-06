@@ -2,6 +2,7 @@ import schedule
 import time
 from UI.UI import UI
 from Collector.HardwareCollector import HardwareCollector
+from Collector.NetworkCollector import NetworkCollector
 from Scheduler.Scheduler import Schedular
 
 
@@ -17,6 +18,7 @@ class Main:
         #스케줄러 및 Collector 생성
         schedular = Schedular()
         HWcollector = HardwareCollector()
+        NWcollector = NetworkCollector()
 
         #하드웨어 관련 정보 수집 스케줄러 설정
         schedular.SetEvery5Sec(HWcollector.pushCPUInfo, self.DB, self.slave.name) #CPU사용량 수집 스케줄러 설정
@@ -24,7 +26,7 @@ class Main:
         schedular.SetEvery5Sec(HWcollector.pushDiskInfo, self.DB, self.slave.name) #디스크사용량 수집 스케줄러 설정
 
         #네트워크 관련 정보 수집 스케줄러 설정
-        #네트워크사용량 수집 스케줄러 설정
+        schedular.SetEvery5Sec(NWcollector.pushNetworkBytes, self.DB, self.slave.name) #네트워크사용량 수집 스케줄러 설정
         #세션수립상태 수집 스케줄러 설정
 
         # 시스템 에러정보 수집
@@ -36,6 +38,6 @@ class Main:
             schedule.run_pending()
             time.sleep(1)
 
-    if __name__ == '__main__':
-        main = Main()
-        main.run()
+if __name__ == '__main__':
+    main = Main()
+    main.run()
