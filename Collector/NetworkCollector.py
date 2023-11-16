@@ -13,6 +13,7 @@ class NetworkCollector:
         # 현재 열린 소켓의 연결 정보 가져오기
         return time(), psutil.net_connections(kind='inet')
 
+
     def pushNetworkBytes(self, *args):
         timedata, bytes_datas = self.getNetworkBytes()
         for interface, data in bytes_datas.items():
